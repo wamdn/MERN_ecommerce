@@ -16,8 +16,8 @@
   },
   "scripts": {
     "start": "node -r esm -r dotenv/config server.js",
-    "watch": "nodemon -r esm -r dotenv/config server.js",
-    "trace-deprecation": "nodemon -r esm -r dotenv/config --trace-deprecation server.js"
+    "dev": "nodemon -r esm -r dotenv/config server.js",
+    "trace": "nodemon -r esm -r dotenv/config --trace-deprecation server.js"
   },
   "devDependencies": {
     "morgan": "^1.10.0"

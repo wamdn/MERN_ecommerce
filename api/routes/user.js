@@ -1,11 +1,14 @@
 import express from 'express';
-import { signup, signin, signout } from '../controllers/user';
-import { signupValidation } from '../validator/index';
+import { requiresSignin, isAuth, isAdmin } from '../controllers/auth';
+import { addUserToRequest } from '../controllers/user';
 
 const router = express.Router();
 
-router.post('/signup', signupValidation, signup);
-router.post('/signin', signin);
-router.post('/signout', signout);
+// add user in req.profile
+router.param('userId', addUserToRequest);
+
+router.get('/secret/:userId', requiresSignin, isAuth, isAdmin, (req, res) => {
+  res.json({ user: req.profile });
+});
 
 export default router;

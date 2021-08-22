@@ -53,6 +53,7 @@ const userSchema = new Schema(
 
 userSchema
   .virtual('password')
+  // set will be executed when you change password or create a new user for exemple
   .set(function (password) {
     this.salt = uuidv1();
     this.hashed_password = this.encryptPassword(password);
